@@ -17,8 +17,8 @@ class Creative1App extends StatelessWidget {
           size: 50.0,
         ),
         buttonTheme: ButtonThemeData(
-          minWidth: 50.0,
-          height: 50.0,
+          minWidth: 25.0,
+          height: 25.0,
           buttonColor: Colors.grey[850],
           disabledColor: Colors.grey[350],
         ),
