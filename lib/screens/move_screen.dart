@@ -25,6 +25,8 @@ class MoveScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
+                  // UP ARROW
+
                   left: 90.0,
                   top: 15.0,
                   child: FlatButton(
@@ -44,6 +46,8 @@ class MoveScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
+                  // LEFT ARROW
+
                   left: 15.0,
                   top: 93.0,
                   child: FlatButton(
@@ -63,6 +67,8 @@ class MoveScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
+                  // DOWN ARROW
+
                   left: 90.0,
                   top: 170.0,
                   child: FlatButton(
@@ -82,6 +88,8 @@ class MoveScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
+                  // RIGHT ARROW
+
                   left: 165.0,
                   top: 93.0,
                   child: FlatButton(
@@ -100,6 +108,16 @@ class MoveScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Positioned(
+                  // Direction Indicator
+
+                  left: 99.0,
+                  top: 99.0,
+                  child: Image.asset(
+                    'images/facingRight.png',
+                    height: 50.0,
+                  ),
+                )
               ],
             ),
           ),
