@@ -48,12 +48,22 @@ class Dungeon {
 
   static moveUp() {
     prevNode = currentNode;
-    currentNode = dungeonMap[currentNode.leftID];
+    currentNode = dungeonMap[currentNode.upID];
+  }
+
+  static moveRight() {
+    prevNode = currentNode;
+    currentNode = dungeonMap[currentNode.rightID];
+  }
+
+  static moveDown() {
+    prevNode = currentNode;
+    currentNode = dungeonMap[currentNode.downID];
   }
 
   static moveLeft() {
     prevNode = currentNode;
-    currentNode = currentNode.leftID;
+    currentNode = dungeonMap[currentNode.leftID];
   }
 
   static initDungeon() {
