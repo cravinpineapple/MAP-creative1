@@ -10,11 +10,50 @@ class MoveScreen extends StatelessWidget {
   var isDownDisabled = true;
   var isLeftDisabled = true;
 
+  String facingImagePath = 'images/facingUp.png';
+
   checkDirections() {
     if (Dungeon.currentNode.upID != null) isUpDisabled = false;
     if (Dungeon.currentNode.rightID != null) isRightDisabled = false;
     if (Dungeon.currentNode.downID != null) isDownDisabled = false;
     if (Dungeon.currentNode.leftID != null) isLeftDisabled = false;
+  }
+
+  equipItems() {
+    switch (Dungeon.currentNode.nodeID) {
+      case 5:
+        Dungeon.hasBear = true;
+        break;
+      case 7:
+        Dungeon.hasHelmet = true;
+        break;
+      case 10:
+        Dungeon.hasPotion = true;
+        break;
+      case 14:
+        Dungeon.hasSword = true;
+        break;
+      case 22:
+        Dungeon.hasSunglasses = true;
+        break;
+    }
+  }
+
+  updateFacingImage() {
+    switch (Dungeon.facing) {
+      case 0:
+        facingImagePath = 'images/facingUp.png';
+        break;
+      case 1:
+        facingImagePath = 'images/facingRight.png';
+        break;
+      case 2:
+        facingImagePath = 'images/facingDown.png';
+        break;
+      case 3:
+        facingImagePath = 'images/facingLeft.png';
+        break;
+    }
   }
 
   moveUp() {
@@ -45,11 +84,8 @@ class MoveScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     currentContext = context;
     checkDirections();
-
-    print('Up: $isUpDisabled');
-    print('Right: $isRightDisabled');
-    print('Down: $isDownDisabled');
-    print('Left: $isLeftDisabled');
+    updateFacingImage();
+    equipItems();
 
     return Scaffold(
       body: Column(
@@ -160,7 +196,7 @@ class MoveScreen extends StatelessWidget {
                   left: 99.0,
                   top: 99.0,
                   child: Image.asset(
-                    'images/facingRight.png',
+                    facingImagePath,
                     height: 50.0,
                   ),
                 )
