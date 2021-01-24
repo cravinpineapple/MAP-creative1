@@ -1,10 +1,56 @@
+import 'package:creative1/model/dungeon.dart';
 import 'package:flutter/material.dart';
 
 class MoveScreen extends StatelessWidget {
   static const routeName = '/moveScreen';
+  BuildContext currentContext;
+
+  var isUpDisabled = true;
+  var isRightDisabled = true;
+  var isDownDisabled = true;
+  var isLeftDisabled = true;
+
+  checkDirections() {
+    if (Dungeon.currentNode.upID != null) isUpDisabled = false;
+    if (Dungeon.currentNode.rightID != null) isRightDisabled = false;
+    if (Dungeon.currentNode.downID != null) isDownDisabled = false;
+    if (Dungeon.currentNode.leftID != null) isLeftDisabled = false;
+  }
+
+  moveUp() {
+    Navigator.pushNamed(currentContext, MoveScreen.routeName);
+    Dungeon.moveUp();
+  }
+
+  moveRight() {
+    Navigator.pushNamed(currentContext, MoveScreen.routeName);
+    Dungeon.moveRight();
+  }
+
+  moveDown() {
+    Navigator.pushNamed(currentContext, MoveScreen.routeName);
+    Dungeon.moveDown();
+  }
+
+  moveLeft() {
+    Navigator.pushNamed(currentContext, MoveScreen.routeName);
+    Dungeon.moveLeft();
+  }
+
+  test() {
+    print('test');
+  }
 
   @override
   Widget build(BuildContext context) {
+    currentContext = context;
+    checkDirections();
+
+    print('Up: $isUpDisabled');
+    print('Right: $isRightDisabled');
+    print('Down: $isDownDisabled');
+    print('Left: $isLeftDisabled');
+
     return Scaffold(
       body: Column(
         children: [
@@ -33,7 +79,7 @@ class MoveScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    onPressed: () => print('Up'),
+                    onPressed: isUpDisabled ? null : moveUp,
                     color: Colors.grey[850],
                     disabledColor: Colors.grey[500],
                     minWidth: 60.0,
@@ -54,7 +100,7 @@ class MoveScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    onPressed: null,
+                    onPressed: isLeftDisabled ? null : moveLeft,
                     color: Colors.grey[850],
                     disabledColor: Colors.grey[500],
                     minWidth: 60.0,
@@ -75,7 +121,7 @@ class MoveScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    onPressed: null,
+                    onPressed: isDownDisabled ? null : moveDown,
                     color: Colors.grey[850],
                     disabledColor: Colors.grey[500],
                     minWidth: 60.0,
@@ -96,7 +142,7 @@ class MoveScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    onPressed: null,
+                    onPressed: isRightDisabled ? null : moveRight,
                     color: Colors.grey[850],
                     disabledColor: Colors.grey[500],
                     minWidth: 60.0,
