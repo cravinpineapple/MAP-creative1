@@ -41,7 +41,7 @@ class Dungeon {
 
   static var facing = 0; // 0 = North, 1 = East, 2 = South, 3 = West
 
-  static Map<dynamic, dynamic> dungeonMap;
+  static Map<dynamic, dynamic> dungeonMap = Map();
 
   static var dragonAttack = 5;
   static var playerAttack = 1;
@@ -49,21 +49,25 @@ class Dungeon {
   static moveUp() {
     prevNode = currentNode;
     currentNode = dungeonMap[currentNode.upID];
+    print('Current Node: ${currentNode.nodeID}');
   }
 
   static moveRight() {
     prevNode = currentNode;
     currentNode = dungeonMap[currentNode.rightID];
+    print('Current Node: ${currentNode.nodeID}');
   }
 
   static moveDown() {
     prevNode = currentNode;
     currentNode = dungeonMap[currentNode.downID];
+    print('Current Node: ${currentNode.nodeID}');
   }
 
   static moveLeft() {
     prevNode = currentNode;
     currentNode = dungeonMap[currentNode.leftID];
+    print('Current Node: ${currentNode.nodeID}');
   }
 
   static initDungeon() {
@@ -237,16 +241,6 @@ class Dungeon {
       leftID: null,
     );
 
-    dungeonMap[16] = DungeonNode(
-      nodeID: 16,
-      itemID: -1,
-      text: 'Room 10',
-      upID: 11,
-      rightID: null,
-      downID: 9,
-      leftID: null,
-    );
-
     dungeonMap[17] = DungeonNode(
       nodeID: 17,
       itemID: -1,
@@ -298,22 +292,22 @@ class Dungeon {
     );
 
     dungeonMap[22] = DungeonNode(
-      nodeID: 20,
+      nodeID: 22,
       itemID: 3,
-      text: 'Room 2',
-      upID: 21,
+      text: 'Room 22 (Sunglasses)',
+      upID: null,
       rightID: null,
-      downID: 19,
+      downID: 21,
       leftID: null,
     );
 
-    dungeonMap[22] = DungeonNode(
-      nodeID: 20,
+    dungeonMap[23] = DungeonNode(
+      nodeID: 23,
       itemID: 3,
-      text: 'Room 2',
-      upID: 21,
+      text: 'Room 23 (Boss)',
+      upID: null,
       rightID: null,
-      downID: 19,
+      downID: 11,
       leftID: null,
     );
   }
