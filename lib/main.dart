@@ -1,8 +1,10 @@
+import 'package:creative1/model/dungeon.dart';
 import 'package:creative1/screens/move_screen.dart';
 import 'package:creative1/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  Dungeon.initDungeon();
   runApp(Creative1App());
 }
 
