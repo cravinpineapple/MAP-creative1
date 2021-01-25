@@ -36,9 +36,6 @@ class BattleScreen extends StatelessWidget {
     dragonHP -= playerDamageDealt;
     playerHP -= dragonDamageDealt;
 
-    print('PlayerDamageMax $playerDamageMax');
-    print('DragonDamageMax $dragonDamageMax');
-
     if (playerHP <= 0) {
       EndScreen.gameWon = false;
       Navigator.pushNamed(currentContext, EndScreen.routeName);

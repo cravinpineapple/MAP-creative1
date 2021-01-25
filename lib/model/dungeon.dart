@@ -58,25 +58,21 @@ class Dungeon {
 
   static moveUp() {
     currentNode = dungeonMap[currentNode.upID];
-    print('Current Node: ${currentNode.nodeID}');
     facing = 0;
   }
 
   static moveRight() {
     currentNode = dungeonMap[currentNode.rightID];
-    print('Current Node: ${currentNode.nodeID}');
     facing = 1;
   }
 
   static moveDown() {
     currentNode = dungeonMap[currentNode.downID];
-    print('Current Node: ${currentNode.nodeID}');
     facing = 2;
   }
 
   static moveLeft() {
     currentNode = dungeonMap[currentNode.leftID];
-    print('Current Node: ${currentNode.nodeID}');
     facing = 3;
   }
 
