@@ -1,3 +1,4 @@
+import 'package:creative1/model/dungeon.dart';
 import 'package:creative1/screens/battle_screen.dart';
 import 'package:creative1/screens/move_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/services.dart';
 
 class StartScreen extends StatelessWidget {
   static const routeName = '/startScreen';
+
+  static var difficulty = 8;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,10 @@ class StartScreen extends StatelessWidget {
                   color: Colors.green[400],
                 ),
               ),
-              onTap: () => {BattleScreen.dragonDamageMax = 4},
+              onTap: () {
+                BattleScreen.dragonDamageMax = 4;
+                difficulty = 4;
+              },
             ),
             ListTile(
               title: Text(
@@ -38,7 +44,10 @@ class StartScreen extends StatelessWidget {
                   color: Colors.orange[300],
                 ),
               ),
-              onTap: () => {BattleScreen.dragonDamageMax = 8},
+              onTap: () {
+                BattleScreen.dragonDamageMax = 8;
+                difficulty = 8;
+              },
             ),
             ListTile(
               title: Text(
@@ -48,7 +57,10 @@ class StartScreen extends StatelessWidget {
                   color: Colors.red[400],
                 ),
               ),
-              onTap: () => {BattleScreen.dragonDamageMax = 12},
+              onTap: () {
+                BattleScreen.dragonDamageMax = 12;
+                difficulty = 12;
+              },
             ),
           ],
         ),
@@ -180,10 +192,13 @@ class StartScreen extends StatelessWidget {
                                 minWidth: 125.0,
                                 height: 65,
                                 child: RaisedButton(
-                                  onPressed: () => Navigator.pushNamed(
-                                    context,
-                                    MoveScreen.routeName,
-                                  ),
+                                  onPressed: () {
+                                    Dungeon.reset();
+                                    Navigator.pushNamed(
+                                      context,
+                                      MoveScreen.routeName,
+                                    );
+                                  },
                                   elevation: 15.0,
                                   splashColor: Colors.red[400],
                                   shape: RoundedRectangleBorder(
