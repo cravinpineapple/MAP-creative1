@@ -1,4 +1,6 @@
 import 'package:creative1/model/dungeon.dart';
+import 'package:creative1/screens/battle_screen.dart';
+import 'package:creative1/screens/end_screen.dart';
 import 'package:creative1/screens/move_screen.dart';
 import 'package:creative1/screens/start_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,8 @@ class Creative1App extends StatelessWidget {
       routes: {
         StartScreen.routeName: (context) => StartScreen(),
         MoveScreen.routeName: (context) => MoveScreen(),
+        BattleScreen.routeName: (context) => BattleScreen(),
+        EndScreen.routeName: (context) => EndScreen(),
       },
     );
   }
