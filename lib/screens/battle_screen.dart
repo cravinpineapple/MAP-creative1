@@ -1,6 +1,7 @@
 import 'package:creative1/model/dungeon.dart';
 import 'package:creative1/screens/end_screen.dart';
 import 'package:creative1/screens/move_screen.dart';
+import 'package:creative1/screens/start_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -12,12 +13,14 @@ class BattleScreen extends StatelessWidget {
   static var playerHP = 340.0;
   static var playerDamageDealt = 0;
   static var dragonDamageDealt = 0;
+  static var isFirstRound = true;
 
   var playerDamageMax = 1;
   static var dragonDamageMax = 8;
   var currentContext;
 
   attack() {
+    dragonDamageMax = StartScreen.difficulty;
     var rng = new Random();
 
     if (Dungeon.hasBear) playerDamageMax += 1;
@@ -33,6 +36,9 @@ class BattleScreen extends StatelessWidget {
     dragonHP -= playerDamageDealt;
     playerHP -= dragonDamageDealt;
 
+    print('PlayerDamageMax $playerDamageMax');
+    print('DragonDamageMax $dragonDamageMax');
+
     if (playerHP <= 0) {
       EndScreen.gameWon = false;
       Navigator.pushNamed(currentContext, EndScreen.routeName);
@@ -45,12 +51,18 @@ class BattleScreen extends StatelessWidget {
 
   run() {
     Dungeon.facing = 2;
+    isFirstRound = true;
     Navigator.pushNamed(currentContext, MoveScreen.routeName);
   }
 
   @override
   Widget build(BuildContext context) {
     currentContext = context;
+
+    var combatText = isFirstRound
+        ? 'Fight!'
+        : 'You hit the dragon for ${(playerDamageDealt / 17).toStringAsFixed(2)} damage!\nThe Dragon hits you for ${(dragonDamageDealt / 17).toStringAsFixed(2)} damage.';
+    isFirstRound = false;
 
     return Scaffold(
       body: Stack(
@@ -155,9 +167,9 @@ class BattleScreen extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(10.0, 18.0, 10.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 0.0),
                 child: Text(
-                  'You hit the dragon for ${(playerDamageDealt / 17).toStringAsFixed(2)} damage!\nThe Dragon hits you for ${(dragonDamageDealt / 17).toStringAsFixed(2)} damage.',
+                  combatText,
                   style: TextStyle(
                     color: Colors.grey[900],
                     fontFamily: 'Lato',
