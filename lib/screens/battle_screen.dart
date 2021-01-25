@@ -1,4 +1,5 @@
 import 'package:creative1/model/dungeon.dart';
+import 'package:creative1/screens/end_screen.dart';
 import 'package:creative1/screens/move_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class BattleScreen extends StatelessWidget {
   static var dragonDamageDealt = 0;
 
   var playerDamageMax = 1;
-  var dragonDamageMax = 8;
+  static var dragonDamageMax = 8;
   var currentContext;
 
   attack() {
@@ -33,11 +34,11 @@ class BattleScreen extends StatelessWidget {
     playerHP -= dragonDamageDealt;
 
     if (playerHP <= 0) {
-      // EndScreen.Won = false;
-      // Navigator.pushNamed(currentContext, EndScreen.routeName);
+      EndScreen.gameWon = false;
+      Navigator.pushNamed(currentContext, EndScreen.routeName);
     } else if (dragonHP <= 0) {
-      // EndScreen.Won = true;
-      // Navigator.pushNamed(currentContext, EndScreen.routeName);
+      EndScreen.gameWon = true;
+      Navigator.pushNamed(currentContext, EndScreen.routeName);
     } else
       Navigator.pushNamed(currentContext, BattleScreen.routeName);
   }
