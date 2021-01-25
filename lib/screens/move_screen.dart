@@ -1,4 +1,5 @@
 import 'package:creative1/model/dungeon.dart';
+import 'package:creative1/screens/battle_screen.dart';
 import 'package:flutter/material.dart';
 
 class MoveScreen extends StatelessWidget {
@@ -9,8 +10,14 @@ class MoveScreen extends StatelessWidget {
   var isRightDisabled = true;
   var isDownDisabled = true;
   var isLeftDisabled = true;
+  var item1 = 'images/blank.png';
+  var item2 = 'images/blank.png';
+  var item3 = 'images/blank.png';
+  var item4 = 'images/blank.png';
+  var item5 = 'images/blank.png';
 
   String facingImagePath = 'images/facingUp.png';
+  String roomImagePath = 'images/straightUpDown.png';
 
   checkDirections() {
     if (Dungeon.currentNode.upID != null) isUpDisabled = false;
@@ -56,7 +63,78 @@ class MoveScreen extends StatelessWidget {
     }
   }
 
+  updateRoomPicture() {
+    switch (Dungeon.currentNode.nodeID) {
+      case 0:
+      case 19:
+      case 20:
+      case 21:
+        roomImagePath = 'images/straightUpDown.png';
+        break;
+      case 1:
+        roomImagePath = 'images/fourWay.png';
+        break;
+      case 3:
+      case 16:
+        roomImagePath = 'images/topLeftCorner.png';
+        break;
+      case 2:
+      case 6:
+        roomImagePath = 'images/tetrisRight.png';
+        break;
+      case 9:
+      case 17:
+        roomImagePath = 'images/bottomRightCorner.png';
+        break;
+      case 18:
+      case 13:
+        roomImagePath = 'images/bottomLeftCorner.png';
+        break;
+      case 15:
+      case 12:
+        roomImagePath = 'images/tetrisDown.png';
+        break;
+      case 8:
+        roomImagePath = 'images/tetrisUp.png';
+        break;
+      case 7:
+        roomImagePath = 'images/helmet.png';
+        break;
+      case 11:
+        roomImagePath = 'images/tetrisLeft.png';
+        break;
+      case 4:
+        roomImagePath = 'images/deadEnd.png';
+        break;
+      case 22:
+        roomImagePath = 'images/sunglasses.png';
+        break;
+      case 5:
+        roomImagePath = 'images/bear.png';
+        break;
+      case 14:
+        roomImagePath = 'images/sword.png';
+        break;
+      case 10:
+        roomImagePath = 'images/potion.png';
+        break;
+    }
+  }
+
+  updateItemFrames() {
+    item1 = Dungeon.hasBear ? 'images/bear.png' : 'images/blank.png';
+    item2 = Dungeon.hasHelmet ? 'images/helmet.png' : 'images/blank.png';
+    item3 = Dungeon.hasPotion ? 'images/potion.png' : 'images/blank.png';
+    item4 = Dungeon.hasSword ? 'images/sword.png' : 'images/blank.png';
+    item5 = Dungeon.hasSunglasses ? 'images/sunglasses.png' : 'images/blank.png';
+  }
+
   moveUp() {
+    if (Dungeon.currentNode.nodeID == 11) {
+      Navigator.pushNamed(currentContext, BattleScreen.routeName);
+      return;
+    }
+
     Navigator.pushNamed(currentContext, MoveScreen.routeName);
     Dungeon.moveUp();
   }
@@ -76,23 +154,173 @@ class MoveScreen extends StatelessWidget {
     Dungeon.moveLeft();
   }
 
-  test() {
-    print('test');
-  }
-
   @override
   Widget build(BuildContext context) {
     currentContext = context;
     checkDirections();
     updateFacingImage();
     equipItems();
+    updateRoomPicture();
+    updateItemFrames();
+
+    var itemBackgroundSize = 50.0;
+    var itemSize = 45.0;
 
     return Scaffold(
       body: Column(
         children: [
           SizedBox(
-            height: 380.0,
+            height: 35.0,
           ),
+          Stack(
+            children: [
+              // row for item backgrounds
+              Row(
+                children: [
+                  SizedBox(
+                    width: 50.0,
+                  ),
+                  Container(
+                    width: itemBackgroundSize,
+                    height: itemBackgroundSize,
+                    color: Colors.grey[400],
+                  ),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Container(
+                    width: itemBackgroundSize,
+                    height: itemBackgroundSize,
+                    color: Colors.grey[400],
+                  ),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Container(
+                    width: itemBackgroundSize,
+                    height: itemBackgroundSize,
+                    color: Colors.grey[400],
+                  ),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Container(
+                    width: itemBackgroundSize,
+                    height: itemBackgroundSize,
+                    color: Colors.grey[400],
+                  ),
+                  SizedBox(
+                    width: 15.0,
+                  ),
+                  Container(
+                    width: itemBackgroundSize,
+                    height: itemBackgroundSize,
+                    color: Colors.grey[400],
+                  ),
+                ],
+              ),
+              // item frame pictures
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  2.5,
+                  2.5,
+                  0.0,
+                  0.0,
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 50.0,
+                    ),
+                    Container(
+                      width: itemSize,
+                      height: itemSize,
+                      child: Image.asset(item1),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Container(
+                      width: itemSize,
+                      height: itemSize,
+                      child: Image.asset(item2),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Container(
+                      width: itemSize,
+                      height: itemSize,
+                      child: Image.asset(item3),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Container(
+                      width: itemSize,
+                      height: itemSize,
+                      child: Image.asset(item4),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Container(
+                      width: itemSize,
+                      height: itemSize,
+                      child: Image.asset(item5),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Image.asset(
+            roomImagePath,
+            height: 150.0,
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+
+          /* ********** */
+          /*  TEXT BOX  */
+          /* ********** */
+          
+          Container(
+            width: 350.0,
+            height: 125.0,
+            decoration: BoxDecoration(
+              color: Colors.grey[400],
+              borderRadius: BorderRadius.all(
+                Radius.circular(35),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15.0, 8.0, 10.0, 0.0),
+              child: Text(
+                Dungeon.currentNode.text,
+                style: TextStyle(
+                  color: Colors.grey[900],
+                  fontFamily: 'Lato',
+                  fontSize: 19.0,
+                ),
+              ),
+            ),
+          ),
+
+          // spacer
+          SizedBox(
+            height: 20.0,
+          ),
+
+
+          /* **************** */
+          /*  PLAYER CONTROLS */
+          /* **************** */
+
           Center(
             child: Stack(
               children: [
