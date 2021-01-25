@@ -1,3 +1,4 @@
+import 'package:creative1/screens/battle_screen.dart';
 import 'package:creative1/screens/move_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,52 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Dungeon Crawl'),
-      // ),
+      appBar: AppBar(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Text(
+                'Select a Difficulty',
+                style: TextStyle(fontSize: 30.0),
+              ),
+            ),
+            ListTile(
+              title: Text(
+                'Easy',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.green[400],
+                ),
+              ),
+              onTap: () => {BattleScreen.dragonDamageMax = 4},
+            ),
+            ListTile(
+              title: Text(
+                'Medium',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.orange[300],
+                ),
+              ),
+              onTap: () => {BattleScreen.dragonDamageMax = 8},
+            ),
+            ListTile(
+              title: Text(
+                'Hard',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.red[400],
+                ),
+              ),
+              onTap: () => {BattleScreen.dragonDamageMax = 12},
+            ),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
+          padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
           child: Center(
             child: Column(
               children: [
