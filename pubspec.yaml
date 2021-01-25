@@ -50,6 +50,24 @@ flutter:
     - images/facingLeft.png
     - images/facingDown.png
     - images/facingRight.png
+    - images/bear.png
+    - images/bottomLeftCorner.png
+    - images/bottomRightCorner.png
+    - images/fourWay.png
+    - images/helmet.png
+    - images/potion.png
+    - images/straightUpDown.png
+    - images/sunglasses.png
+    - images/sword.png
+    - images/tetrisDown.png
+    - images/tetrisLeft.png
+    - images/tetrisRight.png
+    - images/tetrisUp.png
+    - images/topLeftCorner.png
+    - images/topRightCorner.png
+    - images/deadEnd.png
+    - images/blank.png
+    - images/dragon.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
