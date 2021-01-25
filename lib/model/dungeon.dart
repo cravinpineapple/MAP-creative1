@@ -1,3 +1,5 @@
+import 'package:creative1/screens/battle_screen.dart';
+
 class DungeonNode {
   var nodeID; // integer
   var text;
@@ -42,13 +44,16 @@ class Dungeon {
 
   static Map<dynamic, dynamic> dungeonMap = Map();
 
-  reset() {
+  static reset() {
     hasSword = false;
     hasHelmet = false;
     hasPotion = false;
     hasSunglasses = false;
     hasBear = false;
     currentNode = dungeonMap[0];
+    BattleScreen.playerHP = 340.0;
+    BattleScreen.dragonHP = 340.0;
+    BattleScreen.isFirstRound = true;
   }
 
   static moveUp() {
